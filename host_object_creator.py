@@ -1,7 +1,10 @@
-# Assume you have a CSV file with at least one column containing IP addresses, preferably other columns
-# Script will run nslookup command on each IP address and will write to a new file named 
-# <originalCSVFilename>_nslookup.txt
-# Usage: ./bulk_hostobject_creator.sh -n <display name column> -h <VM Host FQDN column> -o <VM os column> <fqdnCSV file>
+"""
+Austin Hunt
+Sept 16-17, 2019
+Script for parsing a CSV file of hosts and building out Icinga2 configuration objects (Host objects, specifically) based on
+flags passed to determine what Icinga attributes to map the columns to
+Built for an Enterprise Application Management project for the College of Charleston IT department
+"""
 import sys,csv,re
 from dns import resolver,reversename
 from string import Template as tmp
