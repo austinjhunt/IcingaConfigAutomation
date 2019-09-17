@@ -13,15 +13,15 @@
 #### 
 
 `
-# Structured with <name> column as name/FQDN of Guest VM, <host> column as name/FQDN of Host machine
+#### Structured with 'name' column (column 1) as name/FQDN of Guest VM, <host> column as name/FQDN of Host machine
 (icingavenv) IT-C07L20D3DY3H:automate_icinga austinhunt$ python host_object_creator.py name=1 ip=4 includesvmhostcol=1 host=5 os=6 fname=~/Downloads/inventory1.csv
 
-# Structured as <name> column as FQDN of host object, notes in column 5
+#### Structured as 'name' column (column 1) as FQDN of host object, notes in column 5
 (icingavenv) IT-C07L20D3DY3H:automate_icinga austinhunt$ python host_object_creator.py name=1 includesvmhostcol=0 notes=5 fname=~/Downloads/inventory2.csv
 
-# Structured as <name> column as FQDN of host object, ip address in column 4 for hosts where name doesn't work as FQDN
+#### Structured as 'name' column (column 1) as FQDN of host object, ip address in column 4 for hosts where name doesn't work as FQDN
 (icingavenv) IT-C07L20D3DY3H:automate_icinga austinhunt$  python host_object_creator.py name=1 ip=4 includesvmhostcol=0 fname=~/Downloads/inventory3.csv
 
-# Structured as <name> column as FQDN of host (in some cases; some are blank, some have spaces; script includes validation)
+# Structured as 'name' column (column 4) as FQDN of host (in some cases; some are blank, some have spaces; script includes validation)
 (icingavenv) IT-C07L20D3DY3H:automate_icinga austinhunt$ python host_object_creator.py name=4 includesvmhostcol=0 fname=~/Downloads/inventory4.csv
 `
