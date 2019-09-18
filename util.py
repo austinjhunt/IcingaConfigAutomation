@@ -5,6 +5,7 @@ helper methods used by host_object_creator.py
 import constants
 import sys
 from HostObject import HostObject
+from CofCHostObject import CofCHostObject
 from dns import reversename
 
 
@@ -75,7 +76,7 @@ def createObjectPerIP(ip_addresses, line):
             fqdn = host_name if is_valid_fqdn(host_name) else clean_fqdn(fqdn)
             try:
                 # Create the host object using the custom class
-                ho = HostObject(address=fqdn, hostname=host_name, display_name=host_name,
+                ho = CofCHostObject(address=fqdn, hostname=host_name, display_name=host_name,
                                 os=index_if_not_none(line, constants.OSCOL),
                                 notes=index_if_not_none(line, constants.NOTESCOL)).create_object()
                 # add to created objects

@@ -18,10 +18,10 @@ class HostObject:
         self.hostname = hostname
 
         # For these variables, give them either their passed value or empty string if that value is none
-        self.address_def = "address = \"" + address + "\"" if address is not None else ""
+        self.address_def = "address = \"" + address + "\"" if address is not None else None
         self.notes_def = "vars.notes = \"" + notes.replace('\n', ' ').replace('\r',
-                                                                              '') + "\"" if notes is not None else ""
-        self.os_def = "vars.os = \"" + os + "\"" if os is not None else ""
+                                                                              '') + "\"" if notes is not None else None
+        self.os_def = "vars.os = \"" + os + "\"" if os is not None else None
         self.check_command_def = "check_command = \"hostalive\""
         self.display_name_def = "display_name = \"" + display_name + "\"" if display_name is not None else "display_name = \"" + self.hostname + "\""
 
@@ -30,7 +30,7 @@ class HostObject:
         # Add every instance variable that is neither the 1) template nor 2) the host name to the body of the configuration.
         # Include new lines and tabs.
         for key, value in self.__dict__.items():
-            if not isinstance(value, tmp) and key != "hostname":
+            if key.endswith("_def") and value is not None:
                 config_body += "\n\t" + value
         config_body += "\n"
 
@@ -39,3 +39,5 @@ class HostObject:
         # Clean the blank lines from the template.
         clean = "\n".join([ll.rstrip() for ll in obj.splitlines() if ll.strip()])  # remove empty lines
         return clean
+
+

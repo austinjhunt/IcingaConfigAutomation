@@ -7,7 +7,7 @@ Built for an Enterprise Application Management project for the College of Charle
 """
 import csv, re, constants
 from util import *
-from HostObject import HostObject
+from CofCHostObject import CofCHostObject
 
 
 
@@ -38,7 +38,7 @@ def parse():
                             # Only create an object if the address (to be used for Host's name) has not already been used
                             address = clean_fqdn(index_if_not_none(line, constants.HOSTCOL))  # if ends with .
                             if address not in constants.HOSTS_CREATED:
-                                ho = HostObject(hostname=address, display_name=index_if_not_none(line, constants.HOSTCOL),
+                                ho = CofCHostObject(hostname=address, display_name=index_if_not_none(line, constants.HOSTCOL),
                                                 address=address).create_object()
                                 constants.HOSTS_CREATED[address] = ho
                                 print(ho)
@@ -56,7 +56,8 @@ def parse():
 
                     if re.search(constants.FQDN_PATTERN, fqdn):
                         fqdn = clean_fqdn(re.search(constants.FQDN_PATTERN, fqdn)[0])
-                    ho = HostObject(hostname=name, display_name=name, address=fqdn,
+
+                    ho = CofCHostObject(hostname=name, display_name=name, address=fqdn,
                                     notes=index_if_not_none(line, constants.NOTESCOL)).create_object()
                     # If you need IP: res.query(fqdn, "A")[0]
 
